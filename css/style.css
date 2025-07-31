@@ -248,6 +248,7 @@ header {
 }
 
 .info__contenido {
+  height: 50%
   padding: 1rem;
   display: flex;
   flex-direction: column;
