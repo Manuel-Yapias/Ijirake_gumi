@@ -14,8 +14,8 @@
   box-sizing: border-box;
 }
 
-/* ===== NAV (antes menú lateral) ahora horizontal superior ===== */
-.lateralm {
+/* ===== NAV horizontal superior ===== */
+.brnav {
   position: fixed;
   top: 0;
   left: 0;
@@ -29,45 +29,65 @@
   color: var(--color-secundario);
   padding: 0 20px;
   overflow: visible;
+  justify-content: space-between;
   transition: none; /* quitamos la transición de ancho lateral */
 }
 
-.lateralm__lista {
+.brnav__lista {
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  width: 100%;
+  width: auto;
   align-items: center;
 }
 
 /* Logo en el lado izquierdo */
-.lateralm__logo {
+.brnav__logo {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
 }
 
-.lateralm__logo img {
+.brnav__logo img {
   height: 40px;
   width: 40px;
   transition: none;
 }
 
-.lateralm__logo span {
+.brnav__logo span {
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--color-secundario);
   opacity: 1; /* Siempre visible */
 }
+.brnav__checkbox {
+  display: none;
+}
+.brnav__hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.brnav__hamburguesa span {
+  display: block;
+  height: 3px;
+  background-color: var(--color-secundario);
+  border-radius: 2px;
+}
 
 /* Items del menú */
-.lateralm__item {
+.brnav__item {
   display: flex;
   align-items: center;
 }
 
-.lateralm__enlace {
+.brnav__enlace {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -78,14 +98,14 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.lateralm__enlace svg {
+.brnav__enlace svg {
   height: 24px;
   width: 24px;
   fill: var(--color-profundo);
   transition: fill 0.3s;
 }
 
-.lateralm__enlace:hover {
+.brnav__enlace:hover {
   background-color: var(--color-hover);
   color: var(--color-brillo);
   margin-left: 5px;
@@ -93,20 +113,20 @@
   border-left: 4px solid var(--color-acento);
 }
 
-.lateralm__enlace:hover svg {
+.brnav__enlace:hover svg {
   fill: var(--color-brillo);
 }
 
 /* Ocultamos las etiquetas solo en menú lateral (no queremos eso ahora) */
-.lateralm__etiqueta {
+.brnav__etiqueta {
   opacity: 1; /* siempre visibles */
   white-space: nowrap;
   font-size: 1rem;
 }
 
-/* Ajustar header para no quedar debajo del nav */
+
 header {
-  margin-top: 70px; /* alto del nav */
+  margin-top: 70px;
 }
 
 /* ===== HERO ===== */
@@ -367,33 +387,44 @@ footer {
 /* diseño adaptativo para pantallas móviles */
 @media (max-width: 767px) {
   /* NAV superior */
-  .lateralm {
+  .brnav {
     position: relative;
     flex-direction: column;
     height: auto;
-    padding: 10px;
+    padding: 10px 20px;
     align-items: flex-start;
     z-index: 9999;
   }
+  .brnav__hamburguesa {
+    display: flex;
+    margin-left: auto;
+  }
 
-  .lateralm__lista {
+  .brnav__lista {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
     width: 100%;
+    display: none;
+    background-color: white;
+    padding-top: 10px;
+    z-index: 999;
   }
-
-  .lateralm__item {
+  
+  .brnav__checkbox:checked + .brnav__hamburguesa + .brnav__lista {
+    display: flex;
+  }
+  .brnav__item {
     width: 100%;
   }
 
-  .lateralm__enlace {
+  .brnav__enlace {
     width: 100%;
     justify-content: flex-start;
     padding: 10px;
   }
 
-  .lateralm__logo {
+  .brnav__logo {
     margin-bottom: 10px;
   }
   header{
@@ -431,6 +462,42 @@ footer {
 
   .contprin__desc {
     font-size: 1rem;
+  }
+
+  /*Articulos*/
+  .info {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .info__imagen {
+    width: 50%;
+    height: auto;
+    margin: 0;
+  }
+
+  .info__contenido {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .info__titulo {
+    margin: 0 0 5px;
+  }
+
+  .info__texto {
+    font-size: 0.85rem;
+    margin-bottom: auto;
+  }
+
+  .info__boton {
+    margin-top: 10px;
+    align-self: flex-end;
   }
 
   /* PIE DE PÁGINA*/
